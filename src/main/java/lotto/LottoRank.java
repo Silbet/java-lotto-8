@@ -19,9 +19,13 @@ public enum LottoRank {
         this.bonus = bonus;
     }
 
-    public static LottoRank from(int count) {
+    public static LottoRank from(int count, boolean bonus) {
+        if (count == SECOND.count && bonus == SECOND.bonus) {
+            return SECOND;
+        }
+
         for (LottoRank rank : values()) {
-            if (rank.count == count && !rank.bonus) {
+            if (count == rank.count && !rank.bonus) {
                 return rank;
             }
         }

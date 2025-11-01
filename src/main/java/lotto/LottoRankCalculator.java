@@ -4,8 +4,8 @@ import java.util.List;
 
 public class LottoRankCalculator {
 
-    public static LottoRank rank(List<Integer> matchingNumber) {
+    public static LottoRank rank(List<Integer> matchingNumber, boolean bonus) {
         int count = matchingNumber.size();
-        return LottoRank.from(count);
+        return LottoRank.from(count, bonus);
     }
 }
