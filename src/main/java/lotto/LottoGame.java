@@ -12,7 +12,7 @@ public class LottoGame {
         this.winningLotto = lotto;
     }
 
-    public List<Integer> matchNumber(Lotto lotto) {
+    List<Integer> matchNumber(Lotto lotto) {
         Set<Integer> lottoNumber = new HashSet<>(lotto.getNumbers());
         Set<Integer> winningNumber = new HashSet<>(winningLotto.getNumbers());
         lottoNumber.retainAll(winningNumber);
