@@ -7,9 +7,11 @@ import java.util.Set;
 
 public class LottoGame {
     private final Lotto winningLotto;
+    private final int bonusNumber;
 
-    public LottoGame(Lotto lotto) {
+    public LottoGame(Lotto lotto, int bonusNumber) {
         this.winningLotto = lotto;
+        this.bonusNumber = bonusNumber;
     }
 
     List<Integer> matchNumber(Lotto lotto) {
@@ -17,5 +19,10 @@ public class LottoGame {
         Set<Integer> winningNumber = new HashSet<>(winningLotto.getNumbers());
         lottoNumber.retainAll(winningNumber);
         return new ArrayList<>(lottoNumber);
+    }
+
+    boolean matchBonusNumber(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        return numbers.contains(bonusNumber);
     }
 }
