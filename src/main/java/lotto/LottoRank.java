@@ -31,4 +31,8 @@ public enum LottoRank {
         }
         return FAILURE;
     }
+
+    public int getPrize() {
+        return this.prize;
+    }
 }
