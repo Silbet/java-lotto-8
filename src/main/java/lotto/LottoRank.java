@@ -37,10 +37,9 @@ public enum LottoRank {
     }
 
     public String getResultText(int count) {
-        String resultText;
 
         if (this == SECOND) {
-            String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", this.count, formatPrize(this.prize), count);
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", this.count, formatPrize(this.prize), count);
         }
 
         if (this == FAILURE) {
@@ -49,7 +48,6 @@ public enum LottoRank {
 
         // 1등, 3등, 4등, 5등인 경우
         return String.format("%d개 일치 (%s원) - %d개", this.count, formatPrize(this.prize), count);
-
     }
 
     private String formatPrize(int prize) {
