@@ -16,9 +16,9 @@ public class InputView {
         return Parser.parseWinningNumbers(input);
     }
 
-    public int inputBonusNumbers() {
+    public static int inputBonusNumbers(List<Integer> winningNumbers) {
         String input = Console.readLine();
-        InputValidator.validateWinningNumbers(input);
+        InputValidator.validateBonusNumbers(input, winningNumbers);
         return Parser.parseBonusNumber(input);
     }
 }
