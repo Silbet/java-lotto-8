@@ -6,6 +6,10 @@ import java.util.List;
 public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
 
+    public static int getLottoPrice() {
+        return LOTTO_PRICE;
+    }
+
     public void run() {
         // 금액 입력 받기 : InputView -> int money
         // 로또 구매하기(금액+발행) : purchaseLottos()만들기. (countPuchasLottos, issueLottos)
