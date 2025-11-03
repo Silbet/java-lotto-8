@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void printPurchaseMoneyRequest() {
@@ -15,5 +16,14 @@ public class OutputView {
         for (Lotto lotto : Lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    public static void printWinningNumberRequest() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+
+
+    public static void printBonusNumberRequest() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 }
