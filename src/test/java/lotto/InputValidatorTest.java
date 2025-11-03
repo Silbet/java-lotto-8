@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class InputValidatorTest {
@@ -79,5 +80,25 @@ public class InputValidatorTest {
                 .hasMessage(InputValidator.ERROR_MESSAGE_DUPLICATE_NUMBER);
     }
 
+    @Test
+    void 보너스_번호가_정수가_아니면_에러가_발생한다() {
+        assertThatThrownBy(() -> InputValidator.validateBonusNumbers("칠", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(InputValidator.ERROR_MESSAGE_NOT_INTEGER);
+    }
+
+    @Test
+    void 보너스_번호가_기준값_사이에_없으면_에러가_발생한다() {
+        assertThatThrownBy(() -> InputValidator.validateBonusNumbers("0", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(InputValidator.ERROR_MESSAGE_OUT_OF_RANGE);
+    }
+
+    @Test
+    void 보너스_번호가_당첨_번호와_중복되면_에러가_발생한다() {
+        assertThatThrownBy(() -> InputValidator.validateBonusNumbers("1", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(InputValidator.ERROR_MESSAGE_BONUS_DUPLICATE_WITH_WINNING_NUMBER);
+    }
 
 }
