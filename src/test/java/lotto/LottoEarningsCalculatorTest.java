@@ -2,19 +2,19 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 public class LottoEarningsCalculatorTest {
     @Test
     void 당첨된_로또의_당첨금에_의해_총_수익이_계산된다() {
-        List<LottoRank> ranks = new ArrayList<>();
-        ranks.add(LottoRank.FIRST);
-        ranks.add(LottoRank.SECOND);
-        ranks.add(LottoRank.THIRD);
+        Map<LottoRank, Integer> lottoResult = new HashMap<>();
+        lottoResult.put(LottoRank.FIRST, 1);
+        lottoResult.put(LottoRank.SECOND, 1);
+        lottoResult.put(LottoRank.THIRD, 1);
 
-        int totalEarnings = LottoEarningsCalculator.calculatorTotal(ranks);
+        int totalEarnings = LottoEarningsCalculator.calculatorTotal(lottoResult);
         int totalPrize = LottoRank.FIRST.getPrize() + LottoRank.SECOND.getPrize() + LottoRank.THIRD.getPrize();
         assertThat(totalEarnings).isEqualTo(totalPrize);
     }

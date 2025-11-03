@@ -1,13 +1,15 @@
 package lotto;
 
-import java.util.List;
+import java.util.Map;
 
 public class LottoEarningsCalculator {
-    static int calculatorTotal(List<LottoRank> ranks) {
+    static int calculatorTotal(Map<LottoRank, Integer> lottoResult) {
         int totalEarnings = 0;
-        // TODO: (Refactor)Stream API를 적용할 가능성?
-        for (LottoRank rank : ranks) {
-            totalEarnings += rank.getPrize();
+
+        for (Map.Entry<LottoRank, Integer> entry : lottoResult.entrySet()) {
+            LottoRank rank = entry.getKey();
+            int count = entry.getValue();
+            totalEarnings += rank.getPrize() * count;
         }
         return totalEarnings;
     }
