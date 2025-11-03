@@ -12,7 +12,7 @@ public class InputValidator {
     public static final String ERROR_MESSAGE_NOT_POSITIVE_NUMBER = "[ERROR] 값이 양수여야 합니다.";
     public static final String ERROR_MESSAGE_INVALID_PURCHASE_MONEY_UNIT = String.format("[ERROR] 구입 금액은 %d원 단위여야 합니다.",
             LottoManager.getLottoPrice());
-    public static final String ERROR_MESSAGE_INVALID_LOTTO_COUNT = "[ERROR] 쉼표로 구분된 값은 6개여야 합니다.";
+    public static final String ERROR_MESSAGE_INVALID_LOTTO_COUNT = "[ERROR] 값이 6개여야 합니다.";
     public static final String ERROR_MESSAGE_DUPLICATE_NUMBER = "[ERROR] 값이 중복되지 않아야 합니다.";
     public static final String ERROR_MESSAGE_OUT_OF_RANGE = String.format("[ERROR] %d 이상 %d 이하인 값이어야 합니다.",
             LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
