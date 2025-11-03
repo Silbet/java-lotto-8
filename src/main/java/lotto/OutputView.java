@@ -42,4 +42,8 @@ public class OutputView {
             System.out.println(rank.getResultText(count));
         }
     }
+
+    public static void printEarningsRate(double earningsRate) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", earningsRate));
+    }
 }
