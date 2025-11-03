@@ -16,6 +16,7 @@ public class InputValidator {
     public static final String ERROR_MESSAGE_DUPLICATE_NUMBER = "[ERROR] 값이 중복되지 않아야 합니다.";
     public static final String ERROR_MESSAGE_OUT_OF_RANGE = String.format("[ERROR] %d 이상 %d 이하인 값이어야 합니다.",
             LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
+    public static final String ERROR_MESSAGE_BONUS_DUPLICATE_WITH_WINNING_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
 
     public static void validatePurchaseMoney(String input) {
         int number;
@@ -54,6 +55,24 @@ public class InputValidator {
 
         if (numbers.stream().anyMatch(n -> n < LOTTO_MIN_NUMBER || n > LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
+        }
+    }
+
+    public static void validateBonusNumbers(String input, List<Integer> winningNumbers) {
+        int number;
+
+        try {
+            number = Parser.parseBonusNumber(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INTEGER);
+        }
+
+        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_OUT_OF_RANGE);
+        }
+
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_BONUS_DUPLICATE_WITH_WINNING_NUMBER);
         }
     }
 }

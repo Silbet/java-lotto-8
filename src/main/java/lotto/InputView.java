@@ -15,4 +15,10 @@ public class InputView {
         InputValidator.validateWinningNumbers(input);
         return Parser.parseWinningNumbers(input);
     }
+
+    public int inputBonusNumbers() {
+        String input = Console.readLine();
+        InputValidator.validateWinningNumbers(input);
+        return Parser.parseBonusNumber(input);
+    }
 }
