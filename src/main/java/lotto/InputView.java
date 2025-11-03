@@ -6,6 +6,6 @@ public class InputView {
     public int inputPurchaseMoney() {
         String input = Console.readLine();
         InputValidator.validatePurchaseMoney(input);
-        return Integer.parseInt(input);
+        return Parser.parsePurchaseMoney(input);
     }
 }

@@ -11,7 +11,7 @@ public class InputValidator {
         int number;
 
         try {
-            number = Integer.parseInt(input);
+            number = Parser.parsePurchaseMoney(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_MESSAGE_PURCHASE_MONEY_INTEGER);
         }
