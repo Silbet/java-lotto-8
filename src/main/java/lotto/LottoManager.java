@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
@@ -47,7 +48,8 @@ public class LottoManager {
     private List<Lotto> purchaseLotto() {
         OutputView.printPurchaseMoneyRequest();
 
-        int money = InputView.inputPurchaseMoney();
+        int money = retryUntilValid(InputView::inputPurchaseMoney);
+
         int count = countPurchaseLottos(money);
         OutputView.printCheckPurchaseLottoCount(count);
 
@@ -59,10 +61,10 @@ public class LottoManager {
 
     private LottoGame createLottoGame() {
         OutputView.printWinningNumberRequest();
-        Lotto winningLotto = new Lotto(InputView.inputWinningNumbers());
+        Lotto winningLotto = retryUntilValid(() -> new Lotto(InputView.inputWinningNumbers()));
 
         OutputView.printBonusNumberRequest();
-        int bonusNumber = InputView.inputBonusNumbers(winningLotto.getNumbers());
+        int bonusNumber = retryUntilValid(() -> InputView.inputBonusNumbers(winningLotto.getNumbers()));
 
         return new LottoGame(winningLotto, bonusNumber);
     }
@@ -92,5 +94,16 @@ public class LottoManager {
 
         int earnings = LottoEarningsCalculator.calculatorTotal(lottoResult);
         return LottoEarningsCalculator.calculatorRate(totalMoney, earnings);
+    }
+
+    // 예외 발생 시 프로그램을 종료하지 않고 계속 입력을 받게 하는 인터페이스
+    private <T> T retryUntilValid(Supplier<T> inputSupplier) {
+        while (true) {
+            try {
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
