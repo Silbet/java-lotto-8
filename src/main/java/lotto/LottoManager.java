@@ -23,13 +23,13 @@ public class LottoManager {
         // 로또 게임 진행하기
         Map<LottoRank, Integer> lottoResult = palyLottoGame(lottogame, lottos);
 
-        // 당첨 내역 출력 : OutputView
+        // 당첨 내역 출력
         OutputView.printWinningResult(lottoResult);
 
-        // 수익률 계산 : calculateEarnings()만들기.
+        // 수익률 계산
         double earnings = calculateEarnings(lottoResult);
 
-        // 수익률 출력 : OutputView
+        // 수익률 출력
         OutputView.printEarningsRate(earnings);
     }
 
