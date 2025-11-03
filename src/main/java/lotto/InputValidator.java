@@ -8,9 +8,9 @@ public class InputValidator {
     public static final int LOTTO_MIN_NUMBER = 1;
     public static final int LOTTO_MAX_NUMBER = 45;
 
-    public static final String ERROR_MESSAGE_INTEGER = "[ERROR] 값이 정수여야 합니다.";
-    public static final String ERROR_MESSAGE_POSITIVE_NUMBER = "[ERROR] 값이 양수여야 합니다.";
-    public static final String ERROR_MESSAGE_PURCHASE_MONEY_UNIT = String.format("[ERROR] 구입 금액은 %d원 단위여야 합니다.",
+    public static final String ERROR_MESSAGE_NOT_INTEGER = "[ERROR] 값이 정수여야 합니다.";
+    public static final String ERROR_MESSAGE_NOT_POSITIVE_NUMBER = "[ERROR] 값이 양수여야 합니다.";
+    public static final String ERROR_MESSAGE_INVALID_PURCHASE_MONEY_UNIT = String.format("[ERROR] 구입 금액은 %d원 단위여야 합니다.",
             LottoManager.getLottoPrice());
     public static final String ERROR_MESSAGE_INVALID_LOTTO_COUNT = "[ERROR] 쉼표로 구분된 값은 6개여야 합니다.";
     public static final String ERROR_MESSAGE_DUPLICATE_NUMBER = "[ERROR] 값이 중복되지 않아야 합니다.";
@@ -23,15 +23,15 @@ public class InputValidator {
         try {
             number = Parser.parsePurchaseMoney(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_INTEGER);
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INTEGER);
         }
 
         if (number <= 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_POSITIVE_NUMBER);
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_POSITIVE_NUMBER);
         }
 
         if (number % LottoManager.getLottoPrice() != 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_PURCHASE_MONEY_UNIT);
+            throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_PURCHASE_MONEY_UNIT);
         }
     }
 
@@ -41,7 +41,7 @@ public class InputValidator {
         try {
             numbers = Parser.parseWinningNumbers(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_INTEGER);
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_INTEGER);
         }
 
         if (numbers.size() != 6) {
